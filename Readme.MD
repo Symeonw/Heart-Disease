@@ -22,8 +22,6 @@ Attribute Information:
 
 The names and social security numbers of the patients were recently removed from the database, replaced with dummy values. One file has been "processed", that one containing the Cleveland database. All four unprocessed files also exist in this directory.
 
-To see Test Costs (donated by Peter Turney), please see the folder "Costs"
-
 Acknowledgements
 
 Creators: 
@@ -32,10 +30,3 @@ Creators:
 3. University Hospital, Basel, Switzerland: Matthias Pfisterer, M.D. 
 4. V.A. Medical Center, Long Beach and Cleveland Clinic Foundation: Robert Detrano, M.D., Ph.D.
 
-Donor: David W. Aha (aha '@' ics.uci.edu) (714) 856-8779
-
-Inspiration
-
-Experiments with the Cleveland database have concentrated on simply attempting to distinguish presence (values 1,2,3,4) from absence (value 0).
-
-See if you can find any other trends in heart data to predict certain cardiovascular events or find any clear indications of heart health.# Heart-Disease-
