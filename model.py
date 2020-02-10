@@ -1,7 +1,8 @@
 from prep import prep_df, train_test_split, split_train_and_test
 from sklearn.linear_model import LogisticRegression
 from baseline import baseline_metrics
-
+import pandas as pd
+import numpy as np
 baseline_metrics()
 
 df = prep_df()
@@ -27,3 +28,24 @@ print("Confusion Matrix: False Neg: 20, False Pos: 13.")
 #Conclusion:
 # Dropping blood_sugar and age contributed to the increase of accuracy by 1.75%, 
 #   bringing accuracy on test data (with .5 test-train-split) to 86.18%. 
+
+import xgboost as xgb
+to_int = ["sex", "cp", "restecg", "exang", "slope", "ca", "thal", "target"]
+for n in to_int:
+    df[n] = df[n].astype(int)
+X = df.drop(columns=["target"])
+y = df.target
+df2 = pd.get_dummies(X)
+df2 = df2.join(y)
+train, test = train_test_split(df2, train_size=.50)
+X_train, y_train, X_test, y_test = split_train_and_test(train, test, "target")
+
+xgb_model = xgb.XGBRFRegressor(random_state=42).fit(X_train, y_train)
+xgb_model.score(X_test, y_test)
+
+
+param = {'max_depth':2, 'eta':1, 'objective':'binary:logistic' }
+num_round = 2
+bst = xgb.train(param, train, num_round)
+# make prediction
+preds = bst.predict(test)
