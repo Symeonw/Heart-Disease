@@ -40,3 +40,14 @@ xg_cl = xgb.XGBClassifier(objective="binary:logistic", n_estimators=10, seed=123
 
 xg_cl.fit(X_train, y_train)
 xg_cl.score(X_test, y_test)
+
+#Second 
+
+hd_dmatrix = xgb.DMatrix(data=X, label=y)
+params={"objective": "binary:logistic", "max_depth":3}
+cv = xgb.cv(dtrain=hd_dmatrix, params=params, nfold=4,\
+    num_boost_round=10, metrics="auc", as_pandas=True)
+print(cv)
+print((cv["test-auc-mean"]).iloc[-1])
+
+
